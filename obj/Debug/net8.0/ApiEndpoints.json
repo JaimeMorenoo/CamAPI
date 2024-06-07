@@ -120,6 +120,22 @@
     ]
   },
   {
+    "ContainingType": "Camp.Controllers.CampingSpotController",
+    "Method": "GetOwnerCampingSpots",
+    "RelativePath": "CampingSpot/owner/{ownerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ownerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Camp.Controllers.UserController",
     "Method": "UpdateUser",
     "RelativePath": "User/update",

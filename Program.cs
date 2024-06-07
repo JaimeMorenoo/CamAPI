@@ -55,6 +55,7 @@ namespace Camp
 
             builder.Services.AddScoped<IUserService, UserService>(); 
             builder.Services.AddScoped<IBookingService, BookingService>();
+            builder.Services.AddScoped<ICampingSpotService, CampingSpotService>();
 
             var app = builder.Build();
 

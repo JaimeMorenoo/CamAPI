@@ -34,23 +34,23 @@ namespace Camp.Controllers
         {
             try
             {
-                // Call the service method to cancel the booking
+              
                 bool cancellationResult = await _bookingService.CancelBookingAsync(bookingId);
 
                 if (cancellationResult)
                 {
-                    // Return success response if the booking was successfully cancelled
+                    
                     return Ok("Booking cancelled successfully.");
                 }
                 else
                 {
-                    // Return error response if the booking could not be cancelled
+                    
                     return BadRequest("Unable to cancel booking. Please try again later.");
                 }
             }
             catch (Exception ex)
             {
-                // Log the exception or handle it appropriately
+
                 return StatusCode(500, "An error occurred while processing your request.");
             }
         }
@@ -60,15 +60,14 @@ namespace Camp.Controllers
         {
             try
             {
-                // Call the service method to fetch user bookings
+             
                 var userBookings = await _bookingService.GetUserBookingsAsync(userId);
 
-                // Return the list of user bookings as the response
                 return Ok(userBookings);
             }
             catch (Exception ex)
             {
-                // Log the exception or handle it appropriately
+         
                 return StatusCode(500, "An error occurred while processing your request.");
             }
         }

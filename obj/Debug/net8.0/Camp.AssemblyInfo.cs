@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Camp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bca940d8ac2753f1a24e8c910cafabf99ec99d1c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d38d0153284b5ff3d273a203118ce7eacdd53439")]
 [assembly: System.Reflection.AssemblyProductAttribute("Camp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Camp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

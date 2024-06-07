@@ -33,7 +33,7 @@ namespace Camp.Services
             }
             catch (Exception ex)
             {
-                // Manejar errores aquí
+                
                 return false;
             }
         }
@@ -56,7 +56,7 @@ namespace Camp.Services
             }
             catch (Exception ex)
             {
-                // Manejar errores aquí
+                
                 return false;
             }
         }
