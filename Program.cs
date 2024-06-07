@@ -53,7 +53,8 @@ namespace Camp
                 };
             });
 
-            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IUserService, UserService>(); 
+            builder.Services.AddScoped<IBookingService, BookingService>();
 
             var app = builder.Build();
 

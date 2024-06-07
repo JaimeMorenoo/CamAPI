@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Usuari\\Desktop\\aaa\\Camp.csproj": {}
+    "C:\\Users\\Usuari\\Desktop\\Proyect\\Camp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Usuari\\Desktop\\aaa\\Camp.csproj": {
+    "C:\\Users\\Usuari\\Desktop\\Proyect\\Camp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuari\\Desktop\\aaa\\Camp.csproj",
+        "projectUniqueName": "C:\\Users\\Usuari\\Desktop\\Proyect\\Camp.csproj",
         "projectName": "Camp",
-        "projectPath": "C:\\Users\\Usuari\\Desktop\\aaa\\Camp.csproj",
+        "projectPath": "C:\\Users\\Usuari\\Desktop\\Proyect\\Camp.csproj",
         "packagesPath": "C:\\Users\\Usuari\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuari\\Desktop\\aaa\\obj\\",
+        "outputPath": "C:\\Users\\Usuari\\Desktop\\Proyect\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Usuari\\AppData\\Roaming\\NuGet\\NuGet.Config",

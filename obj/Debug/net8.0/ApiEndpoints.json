@@ -16,6 +16,69 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Camp.Controllers.BookingController",
+    "Method": "BookCampingSpot",
+    "RelativePath": "Booking",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "campingSpotId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "checkInDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "checkOutDate",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Camp.Controllers.BookingController",
+    "Method": "CancelBooking",
+    "RelativePath": "Booking/bookings/{bookingId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "bookingId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Camp.Controllers.BookingController",
+    "Method": "GetUserBookings",
+    "RelativePath": "Booking/bookings/user/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Camp.Controllers.CampingSpotController",
     "Method": "GetCampingSpots",
     "RelativePath": "CampingSpot",
@@ -57,23 +120,19 @@
     ]
   },
   {
-    "ContainingType": "Camp.Controllers.WeatherForecastController",
-    "Method": "Get",
-    "RelativePath": "WeatherForecast",
-    "HttpMethod": "GET",
+    "ContainingType": "Camp.Controllers.UserController",
+    "Method": "UpdateUser",
+    "RelativePath": "User/update",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
+    "Parameters": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Camp.WeatherForecast, Camp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
+        "Name": "model",
+        "Type": "Camp.Models.User",
+        "IsRequired": true
       }
-    ]
+    ],
+    "ReturnTypes": []
   }
 ]
