@@ -1,0 +1,6 @@
+@Camp_HostAddress = http://localhost:5124
+
+GET {{Camp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
