@@ -14,12 +14,32 @@ namespace Camp.Controllers
         {
             _userService = userService;
         }
+
+        [HttpPost]
+        [Route("create")]
+        public async Task<IActionResult> CreateUser([FromBody] User newUser)
+        {
+            if (newUser == null)
+            {
+                return BadRequest("User is null.");
+            }
+
+            try
+            {
+                var createdUser = await _userService.CreateUserAsync(newUser);
+                return Ok(createdUser);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+
+
         [HttpPut("update")]
         public async Task<IActionResult> UpdateUser([FromBody] User model)
         {
-            // Lógica para buscar y actualizar el usuario en la base de datos usando el modelo proporcionado
-            // Actualiza los campos pertinentes con la información proporcionada en el modelo
-            // Retorna un mensaje de éxito o fallo apropiado
 
            var result = await _userService.UpdateUserAsync(model);
 
@@ -32,6 +52,18 @@ namespace Camp.Controllers
             {
                 return BadRequest(new { message = "Failed to update user information." });
             }
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult<User> GetUserById(int id)
+        {
+            // Retrieve user by ID from the service
+            var user = _userService.GetUserById(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return Ok(user);
         }
     }
 }

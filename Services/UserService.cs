@@ -1,5 +1,6 @@
 ﻿using Camp.Data;
 using Camp.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Camp.Services
@@ -11,10 +12,32 @@ namespace Camp.Services
         {
             _anonUserDB = anonUserDB;
         }
-        // Here is where we are checking with the database if the credentials given are correct.
-        public bool Authenticate(string username, string password)
+
+        public async Task<User> CreateUserAsync(User newUser)
         {
-            return _anonUserDB.users.Any(x=> x.Username == username && x.Password == password);
+            if (newUser == null)
+            {
+                throw new ArgumentNullException(nameof(newUser));
+            }
+
+            _anonUserDB.users.Add(newUser);
+            await _anonUserDB.SaveChangesAsync();
+            return newUser;
+        }
+        public User Authenticate(string username, string password)
+        {
+            var user = _anonUserDB.users.SingleOrDefault(x => x.Username == username && x.Password == password);
+            if (user == null)
+                return null;
+
+            // Authentication successful
+            return user;
+        }
+
+        public ActionResult<User> GetUserById(int id)
+        {
+            // Call the repository method to fetch user information by ID
+            return _anonUserDB.users.FirstOrDefault(x => x.UserId == id);
         }
 
         public async Task<bool> UpdateUserAsync(User model)
@@ -32,6 +55,7 @@ namespace Camp.Services
                 user.DOB = model.DOB;
                 user.LastName = model.LastName;
                 user.Name = model.Name;
+
 
                 await _anonUserDB.SaveChangesAsync();
 

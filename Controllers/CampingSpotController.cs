@@ -22,6 +22,64 @@ namespace Camp.Controllers
             _campingSpotService = campingSpotService;
         }
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateSpot(int id, [FromBody] Spot updatedSpot)
+        {
+            if (id != updatedSpot.Id)
+            {
+                return BadRequest("Spot ID in the request body does not match the route parameter");
+            }
+
+            bool spotUpdated = await _campingSpotService.UpdateSpot(id, updatedSpot);
+
+            if (!spotUpdated)
+            {
+                return NotFound("Spot not found");
+            }
+
+            return Ok("Spot updated successfully");
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<Spot>> CreateSpot(Spot spot)
+        {
+            try
+            {
+                var createdSpot = await _campingSpotService.CreateSpotAsync(spot);
+                return Ok(createdSpot);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+
+        [HttpDelete("CampingSpot/{spotId}")]
+        public async Task<IActionResult> CancelBooking(int spotId)
+        {
+            try
+            {
+
+                bool cancellationResult = await _campingSpotService.CancelSpotAsync(spotId);
+
+                if (cancellationResult)
+                {
+
+                    return Ok("Spot Deleted successfully.");
+                }
+                else
+                {
+
+                    return BadRequest("Unable to cancel booking. Please try again later.");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return StatusCode(500, "An error occurred while processing your request.");
+            }
+        }
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Spot>>> GetCampingSpots(
            [FromQuery] string location = null,

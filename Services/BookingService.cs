@@ -13,6 +13,36 @@ namespace Camp.Services
             _anonUserDB = AnonUserDB;
         }
 
+        public async Task<bool> UpdateSpot(int spotId, Spot updatedSpot)
+        {
+            try
+            {
+                var spot = await _anonUserDB.campingSpots.FindAsync(spotId);
+
+                if (spot == null)
+                {
+                    return false; // Spot not found
+                }
+
+                // Update the properties of the spot
+                spot.Name = updatedSpot.Name;
+                spot.Description = updatedSpot.Description;
+                spot.Location = updatedSpot.Location;
+                spot.PricePerNight = updatedSpot.PricePerNight;
+
+                // Save changes to the database
+                await _anonUserDB.SaveChangesAsync();
+
+                return true; // Spot updated successfully
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions here
+                Console.WriteLine($"Error updating spot: {ex.Message}");
+                return false;
+            }
+        }
+
         public async Task<bool> BookCampingSpotAsync(int userId, int campingSpotId, DateTime checkInDate, DateTime checkOutDate)
         {
             try

@@ -57,6 +57,16 @@ namespace Camp
             builder.Services.AddScoped<IBookingService, BookingService>();
             builder.Services.AddScoped<ICampingSpotService, CampingSpotService>();
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAnyOrigin", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                           .AllowAnyMethod()
+                           .AllowAnyHeader();
+                });
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -70,7 +80,7 @@ namespace Camp
 
             app.UseAuthorization();
 
-
+            app.UseCors("AllowAnyOrigin");
             app.MapControllers();
 
             app.Run();

@@ -24,7 +24,9 @@ namespace Camp.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginRequest model)
         {
-            if (_userService.Authenticate(model.Username, model.Password)) // The LoginRequest Model with ONLY username and pass
+            // Authenticate the user
+            var user = _userService.Authenticate(model.Username, model.Password);
+            if (user != null) // Assuming Authenticate returns a User object or null
             {
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);
@@ -32,7 +34,8 @@ namespace Camp.Controllers
                 {
                     Subject = new ClaimsIdentity(new Claim[]
                     {
-                        new Claim(ClaimTypes.Name, model.Username)
+                new Claim(ClaimTypes.Name, model.Username),
+                new Claim("UserID", user.UserId.ToString()) // Adding UserID claim
                     }),
                     Expires = DateTime.UtcNow.AddDays(7),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
@@ -42,12 +45,14 @@ namespace Camp.Controllers
 
                 return Ok(new
                 {
-                    Username = model.Username,    // We created a token for that specific user and it will last 7 days
+                    Username = model.Username,
+                    UserId = user.UserId, // Include UserID in the response
                     Token = tokenString
                 });
             }
 
             return BadRequest(new { message = "Username or password is incorrect" });
         }
+
     }
 }
